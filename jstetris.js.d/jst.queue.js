@@ -1,11 +1,11 @@
-jst.previewCode = jst.pushModuleCode(function () {
+jst.queueCode = jst.pushModuleCode(function () {
 
-this.preview =
-jst.preview = {};
+this.queue =
+jst.queue = {};
 
-preview.length = 3;
+queue.length = 3;
 
-preview.boxlist = [];
+queue.boxlist = [];
 
 // zone
 var zoneHeight = 2;
@@ -46,20 +46,20 @@ function TBox (index) {
   };
 }
 
-for (let i of range(preview.length)) {
-  preview.boxlist.push(new TBox(i));
+for (let i of range(queue.length)) {
+  queue.boxlist.push(new TBox(i));
 }
-for (let i of range(preview.length - 1)) {
-  preview.boxlist[i].input = preview.boxlist[i+1].output
+for (let i of range(queue.length - 1)) {
+  queue.boxlist[i].input = queue.boxlist[i+1].output
 }
 
-preview.lastbox = preview.boxlist[preview.length - 1];
-preview.lastbox.input = jst.trisBank.randomType;
+queue.lastbox = queue.boxlist[queue.length - 1];
+queue.lastbox.input = jst.trisBank.randomType;
 
-preview.firstbox = preview.boxlist[0];
+queue.firstbox = queue.boxlist[0];
 tris.getType.core = function () {
   if (!tris.enter.trisType)
-    tris.enter.trisType = preview.firstbox.output();
+    tris.enter.trisType = queue.firstbox.output();
 } // FUNCTION OVERWRITE
 
-});
+}); // End of jst.queue

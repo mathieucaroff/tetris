@@ -1,7 +1,5 @@
 var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function () {
   jst.debug = false;
-  jst.context = jst.debug ? window : {};
-  var i = 0;
   jst.moduleCodeList = [];
   
   jst.pushModuleCode = function (module) {
@@ -9,25 +7,34 @@ var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function
     return module;
   }
   
-  function loadNextScript () {
-    var script = document.createElement("script");
-    script.src = jst.moduleFilenames[i];
-    if (++i < jst.moduleFilenames.length) {
-      script.onload = loadNextScript;
-    }
-    document.body.appendChild(script);
-  }
-  
-  // EDITIING
+  jst.modulePathFromName = (x => `jstetris.js.d/jst.${x}.js`);
   jst.moduleNames = [
 "errors", "util", "jst", "time", "zone", "grid-gameOver",
 "trisBank", "tris", "crd", "acq", "uact", "linedeletion",
 "hold", "preview", "shadow",
-"cojsTetris/jst.cojsLock",
+"cojstetris",
 "run"
   ];
-  jst.moduleFilenames = jst.moduleNames.map(x => `jstetris.js.d/jst.${x}.js`);
-  loadNextScript();
+  
+  jst.scriptLoader = function (my) {
+    var i = 0;
+    my.moduleFilenames = my.moduleNames.map(my.modulePathFromName);
+    my.loadNextScript = function () {
+      var script = my.loadingScript = document.createElement("script");
+      script.src = my.moduleFilenames[i];
+      if (++i < my.moduleFilenames.length) {
+        script.onload = my.loadNextScript;
+      } else {
+        if (my.scriptsLoadedCallback !== undefined) {
+          script.onload = my.scriptsLoadedCallback;
+        }
+      }
+      document.body.appendChild(script);
+    };
+    my.loadNextScript();
+  };
+  jst.scriptLoader(jst);
+
 }; // End of jst.load
 
 jst.load();
