@@ -97,12 +97,12 @@ jst.util.Hook = class {
     this.run = function () {
       if (me.enabled) {
         for (let func of me.wholeExecution) {
-            if (typeof func == "function") {
+          if (typeof func == "function") {
             func();
-            } else {
+          } else {
             console.log(new Error().stack);
             console.log(`Error - cannot execute it since it is not a function - ${func}`);
-            }
+          }
         }
       }
     }
