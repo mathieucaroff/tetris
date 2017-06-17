@@ -22,7 +22,9 @@ var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function
   jst.moduleNames = [
 "errors", "util", "jst", "time", "zone", "grid-gameOver",
 "trisBank", "tris", "crd", "acq", "uact", "linedeletion",
-"hold", "preview", "shadow", "run"
+"hold", "preview", "shadow",
+"cojsTetris/jst.cojsLock",
+"run"
   ];
   jst.moduleFilenames = jst.moduleNames.map(x => `jstetris.js.d/jst.${x}.js`);
   loadNextScript();
