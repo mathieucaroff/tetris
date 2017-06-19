@@ -1,10 +1,11 @@
 jst.execModuleCodes = function () {
   for (let moduleIndex in jst.moduleCodeList) {
     try {
-      var suffix = `\n//# sourceURL=jst.${jst.moduleNames[moduleIndex]}.js\n`;
+      var suffix = `\n//# sourceURL=${jst.moduleShortFilenamearray[moduleIndex]}.js\n`;
+      jst.llog(moduleIndex, jst.moduleShortFilenamearray[moduleIndex]);
       eval(jst.moduleCodeList[moduleIndex].toString().slice(13,-1)+suffix);
     } catch (err) {
-      console.log(jst.moduleNames[moduleIndex]);
+      jst.llog(jst.moduleShortFilenamearray[moduleIndex]);
       throw err;
     }
   }

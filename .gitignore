@@ -1,0 +1,4 @@
+# IDE Project files
+*.kdev4
+.project
+.settings

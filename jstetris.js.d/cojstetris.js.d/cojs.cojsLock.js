@@ -4,10 +4,10 @@ cojsLock = jst.uact.cojsLock = {};
 locklib = cojsLock.locklib = {};
 locklib.lock = function (hook) {
   hook.locked = true;
-}
+};
 locklib.unlock = function (hook) {
   hook.locked = false;
-}
+};
 locklib.addLock = function (hook) {
   let basicRun = hook.run;
   hook.locked = true;
@@ -16,13 +16,13 @@ locklib.addLock = function (hook) {
     } else {
       basicRun();
     }
-  }
-}
+  };
+};
 
 cojsLock.horizHooks = "moveRight moveLeft moveDown overground quickfall".split(" ").map((name) => jst.uact[name]);
 cojsLock.rotatHooks = "rotate hold".split(" ").map((name) => jst.uact[name]);
 
-cojsLock.affectedHooks = cojsLock.horizHooks + cojsLock.rotatHooks;
+cojsLock.affectedHooks = cojsLock.horizHooks.concat( cojsLock.rotatHooks);
 
 cojsLock.affectedHooks.forEach(locklib.addLock);
 

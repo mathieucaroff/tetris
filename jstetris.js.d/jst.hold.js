@@ -1,9 +1,9 @@
 jst.holdCode = jst.pushModuleCode(function () {
 
-this.hold =
+hold =
 jst.hold = {};
 
-this.held = jst.held = {
+held = jst.held = {
   type: "",
   shape: [0,0, 0,0, 0,0, 0,0],
   rot: 0,

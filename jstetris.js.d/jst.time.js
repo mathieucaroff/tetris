@@ -1,7 +1,7 @@
 jst.timeCode = jst.pushModuleCode(function () {
 this.time =
 jst.time = {
-  supended: 1
+  suspended: 1
 };
 
 this.tick =

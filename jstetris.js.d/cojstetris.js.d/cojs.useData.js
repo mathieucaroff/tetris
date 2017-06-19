@@ -1,12 +1,12 @@
 jst.useDataCode = jst.pushModuleCode(function () {
   // Required data:
-  // - Whole grid (colornumbers)
+  // - Whole 20x10 grid (colornumbers)
   // - Current tris
   // - Tris queue
   // - Game paused
   // - Held tris
   
-  usedata = jst.useData = {}'
+  usedata = jst.useData = {}
   usedata.getData = function () {
     
   }
