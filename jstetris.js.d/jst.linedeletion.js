@@ -1,10 +1,10 @@
 jst.linedeletionCode = jst.pushModuleCode(function () {
 
-this.ld =
+var ld =
 jst.linedeletion = {};
-this.tris = jst.tris;
-this.grid = jst.grid;
-this.range = jst.util.range;
+tris = jst.tris;
+grid = jst.grid;
+range = jst.util.range;
 
 ld.deleteLine = new jst.util.Hook();
 ld.deleteLine.core = function () {

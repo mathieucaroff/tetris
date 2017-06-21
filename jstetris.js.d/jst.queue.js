@@ -14,8 +14,8 @@ var zoneWidth = 4;
 function TBox (index) {
   var me = this;
   this.index = index;
-  var tris = this.tris = {}
-  deepUpdate(tris, jst.tris.default);
+  var tris = this.tris = {};
+  deepUpdate({dest:tris, src:jst.tris.default});
   tris.type = trisBank.randomType();
   this.crdtris = {};
   this.zone = jst.zone.NewZone(zoneHeight, zoneWidth);
@@ -53,9 +53,11 @@ for (let i of range(queue.length - 1)) {
   queue.boxlist[i].input = queue.boxlist[i+1].output
 }
 
+// Last box is the lowest, and the farest from delivering to the board.
 queue.lastbox = queue.boxlist[queue.length - 1];
 queue.lastbox.input = jst.trisBank.randomType;
 
+// First box is the closest to the top, the one delivering its tris to the board.
 queue.firstbox = queue.boxlist[0];
 tris.getType.core = function () {
   if (!tris.enter.trisType)

@@ -1,39 +1,32 @@
 jst.shadowCode = jst.pushModuleCode(function () {
 // Beware dirty code in this module
 var shadow = jst.shadow = Object.create(jst.tris);
-shadow.pos = update({}, jst.tris.default.pos);
-shadow.color = 12;
+
+shadow.color = 13;
 shadow.crd = {};
 jst.initTris(shadow, jst.grid);
+shadow.pos = update({}, jst.tris.default.pos);
 crd.initTris(shadow.crd, shadow, crd.grid);
 
 shadow.update = new Hook();
 shadow.update.core = function () {
   shadow.pos.x = tris.pos.x;
-  shadow.pos.y = -1;
-  while (shadow.pos.y <= 18 && shadow.collision()) {
-    shadow.pos.y += 1;
+  shadow.pos.y = tris.pos.y;
+  tris.erease.core();
+  while (!shadow.collision()) {
+    shadow.pos.y -= 1;
   }
+  shadow.pos.y += 1;
+  tris.rend.core();
 };
 shadow.update.after.push(shadow.rend.run);
-//shadow.update.after.push(crd.grid.rend);
 
-shadow.setWillUpdate = function () {
-  shadow.willUpdate = jst.tris.move.x != 0;
-};
-tris.move.before.push(shadow.setWillUpdate);
-
-
-shadow.moveConditionalErease = _ => shadow.willUpdate ? shadow.erease.run() : null;
-
-tris.move.before.push(shadow.moveConditionalErease);
+tris.move.before.push(shadow.erease.run);
 tris.rotate.before.push(shadow.erease.run);
 tris.enter.before.push(shadow.erease.run);
 
-
-shadow.moveConditionalUpdate = _ => shadow.willUpdate ? shadow.update.run() : null;
-
-tris.move.execution.push(shadow.moveConditionalUpdate);
+tris.move.execution.push(shadow.update.run);
 tris.rotate.execution.push(shadow.update.run);
-tris.enter.execution.push(shadow.update.run);
+tris.enter.execution.unshift(shadow.update.run);
+
 });

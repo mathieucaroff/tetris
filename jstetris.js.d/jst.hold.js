@@ -40,9 +40,16 @@ hold.swap.core = function () {
   jst.tris.enter.run();
   held.enter.trisType = tristype;
   held.enter.run();
+  hold.swap.enabled = false;
 };
 hold.swap.before.push(jst.tris.erease.run);
 hold.swap.before.push(held.erease.run);
+
+hold.swap.enable = function () {
+  hold.swap.enabled = true;
+}
+  
+tris.fall.collision.execution.push(hold.swap.enable);
 
 /// crd
 crd.initTris(held.crd, held, hold.zone);
@@ -62,6 +69,7 @@ crd.initZone(hold.zone, hold.zone, bo);
 
   // uact
   uact.hold = new Hook();
+  uact.basicHookNames.push("hold");
   kd.shift_.execution.push(uact.hold.run);
   uact.hold.execution.push(hold.swap.run);
 }

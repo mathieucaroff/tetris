@@ -1,11 +1,13 @@
 var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function () {
   'use strict';
   jst.debug = true;
-  jst.nothing = function () {};
   {
-    let log = jst.debug ? console.log : jst.nothing;
+    let nothing = jst.nothing = function () {};
+    let log = jst.debug ? console.log : nothing;
     jst.log = log;
-    jst.llog = jst.log;
+    jst.llog = nothing; // loader log
+    jst.warn = jst.debug ? console.warn : nothing;
+    jst.error = jst.debug ? console.error : nothing;
   }
   
   jst.moduleShortFilenamearray = [];
@@ -21,7 +23,8 @@ var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function
   jst.myModules.namearray = [
 "errors", "util", "jst", "time", "zone", "grid-gameOver",
 "trisBank", "tris", "crd", "acq", "uact", "linedeletion",
-"hold", "queue", "shadow"
+"hold", "queue", "shadow",
+"score"
   ];
   jst.myModules.title = "jst.myModules";
   jst.myModules.mode = "module";
@@ -76,7 +79,7 @@ var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function
         }
       }
       if (my.mode === "module") {
-        jst.moduleShortFilenamearray.push(my.filenames[i].replace(/^jst.jstetri.d\//));
+        jst.moduleShortFilenamearray.push(my.filenames[i].replace(/^jstetris\.js\.d[/]/,""));
       }
       i++;
       document.body.appendChild(script);

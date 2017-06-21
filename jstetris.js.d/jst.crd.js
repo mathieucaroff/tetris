@@ -1,6 +1,6 @@
 jst.crdCode = jst.pushModuleCode(function () {
 /// Canvas render crd
-this.crd = 
+var crd = 
 jst.crd = {
   board: {
     width: grid.width + 4.5 + 4.5,
@@ -22,12 +22,14 @@ jst.crd = {
     10: "purple",
     11: "grey+",
     12: "grey-",
-    13: "grey"
+    13: "grey--",
+    14: "grey"
   },
   hue: {
     "grey": "#808080",
     "grey+": "#2F2F2F",
     "grey-": "#262626",
+    "grey--": "#161616",
     "black": "#000000",
     "white": "#FFFFFF",
     "pink": "#C529A6",
@@ -61,12 +63,24 @@ crd.init.core = function () {
 `;
   document.head.appendChild(style);
   crd.ctx = jst.canvas.getContext("2d");
-  window.resizeHook.after.push(crd.handelResize);
+  window.resizeHook.execution.push(crd.handleResize.run);
 };
 jst.init.after.push(window.resizeHook.run);
 jst.init.execution.push(crd.init.run);
 
-crd.handelResize = function () {
+
+/**
+ * crd.drawCircle
+ * Write the path of a circle at the given position. Uses the current style.
+ */
+crd.drawCircle = function (x, y, radius) {
+  crd.ctx.beginPath();
+  crd.ctx.arc(x, y, radius, 0, 6.3, false);
+};
+
+
+crd.handleResize = new Hook();
+crd.handleResize.core = function () {
   var bo = crd.board;
   var wi = jst.canvas.width = window.innerWidth;
   var he = jst.canvas.height = window.innerHeight;
@@ -86,7 +100,6 @@ crd.handelResize = function () {
   bo.pheight = (crd.pps * bo.height);
   bo.pxoff = Math.ceil((wi-bo.pwidth)/2);
   bo.pyoff = Math.ceil((he-bo.pheight)/2);
-  bo.rend.run();
 };
 
 crd.board.rend = new Hook();
@@ -94,6 +107,7 @@ crd.board.rend.core = function () {
   crd.ctx.fillStyle = crd.hue["black"];
   crd.ctx.fillRect(0, 0, jst.canvas.width, jst.canvas.height);
 };
+crd.handleResize.after.push(crd.board.rend.run);
 
 // crdzone: zone object to initialize.
 // jstzone: object containing the parameters {width, height} (in square number)
@@ -122,12 +136,17 @@ crd.initZone = function (crdzone, jstzone, bo) {
     var pxoff = bo.pxoff + (x + jstzone.xoff) * pps; var colorNum = jstzone[y][x];
     // TODO rather cache each square type first, and use cached data for displaying them after
     var color = crd.hue[crd.color[colorNum || 11 + (x+y) % 2]];
+    /*/**
+    if (colorNum === 14) {
+      color = crd.hue[crd.color[13 + (x+y) % 2]];
+    }/**/
     if (colorNum) {
       let darkColor = Color.textFromTriplet(Vector.scale(Color.tripletFromText(color),0.5).map(Math.round));
       ctx.fillStyle = darkColor;
       ctx.fillRect(pxoff, pyoff, pps, pps);
       ctx.fillStyle = color;
-      ctx.fillRect(pxoff + crd.outline, pyoff + crd.outline, pps - 2 * crd.outline, pps - 2 * crd.outline);
+      let outline = crd.outline;
+      ctx.fillRect(pxoff + outline, pyoff + outline, pps - 2 * outline, pps - 2 * outline);
       let semidarkcolor = Color.textFromTriplet(Vector.scale(Color.tripletFromText(color),0.8).map(Math.round));
       ctx.fillStyle = semidarkcolor;
       ctx.fillRect(pxoff + crd.wideline, pyoff + crd.wideline, pps - 2 * crd.wideline, pps - 2 * crd.wideline);
@@ -173,5 +192,5 @@ crd.initTris = function (crdtris, jsttris, crdzone) {
 
 crd.initTris(crd.tris, jst.tris, crd.grid);
 
-jst.grid.gameOver.after.push(crd.grid.rend)
+jst.grid.gameOver.after.push(crd.grid.rend);
 }); // End of jst.crd

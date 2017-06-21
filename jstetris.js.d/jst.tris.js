@@ -15,40 +15,35 @@ jst.tris.default = {
     pos: {}
   }
 };
-deepUpdate(tris, tris.default);
-tris.pos = {
-  y:18,
-  x:5
-}
 
-jst.solid = [0,0,1,1,1,1,1,1,1,1,1,0,0,0];
+jst.solid = [0,0,1,1,1,1,1,1,1,1,1,0,0,0,0];
 jst.solid[-1] = 1;
 
-jst.initTris = function (tris, zone) {
-  tris.rend = new Hook();
-  tris.rend.core = function () {
+jst.initTris = function (mytris, zone) {
+  mytris.rend = new Hook();
+  mytris.rend.core = function () {
     for (let i of range(0,8,2)) {
-      var y = tris.pos.y + tris.shape[i];
-      var x = tris.pos.x + tris.shape[i+1];
-      zone[y][x] = tris.color;
+      var y = mytris.pos.y + mytris.shape[i];
+      var x = mytris.pos.x + mytris.shape[i+1];
+      zone[y][x] = mytris.color;
     }
   };
 
-  tris.erease = new Hook();
-  tris.erease.core = function () {
+  mytris.erease = new Hook();
+  mytris.erease.core = function () {
     for (let i of range(0,8,2)) {
-      var y = tris.pos.y + tris.shape[i];
-      var x = tris.pos.x + tris.shape[i+1];
-      if (zone[y][x] == tris.color) {
+      var y = mytris.pos.y + mytris.shape[i];
+      var x = mytris.pos.x + mytris.shape[i+1];
+      if (zone[y][x] == mytris.color) {
         zone[y][x] = 0;
       }
     }
   };
 
-  tris.collision = function () {
+  mytris.collision = function () {
     for (let i of range(0,8,2)) {
-      var y = tris.pos.y + tris.shape[i];
-      var x = tris.pos.x + tris.shape[i+1];
+      var y = mytris.pos.y + mytris.shape[i];
+      var x = mytris.pos.x + mytris.shape[i+1];
       if (jst.solid[zone[y][x]])
 	return true;
     }
@@ -57,6 +52,11 @@ jst.initTris = function (tris, zone) {
 };
 
 jst.initTris(tris, jst.grid);
+deepUpdate({dest: tris, src: tris.default});
+tris.pos = {
+  y:18,
+  x:5
+}
 
 tris.savetris = function () {
   var sav = tris.sav;

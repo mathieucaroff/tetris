@@ -1,9 +1,6 @@
 jst.utilCode = jst.pushModuleCode(function () {
-  
-jst.util = {};
 
-var doNothing =
-jst.util.doNothing = function (...args) {};
+jst.util = {};
 
 var range =
 jst.util.range = function* () {
@@ -21,6 +18,7 @@ jst.util.range = function* () {
     }
   }
 };
+
 
 var Matrix =
 jst.util.Matrix =
@@ -93,15 +91,15 @@ jst.util.Hook = class {
     this.execution = Array.from(args);
     this.after = [];
     this.enabled = true;
+    this.locked = false;
     var me = this;
     this.run = function () {
-      if (me.enabled) {
+      if (me.enabled && !me.locked) {
         for (let func of me.wholeExecution) {
           if (typeof func == "function") {
             func();
           } else {
-            console.log(new Error().stack);
-            console.log(`Error - cannot execute it since it is not a function - ${func}`);
+            console.warn(`Warning - cannot execute \`${func}\` since it is not a function.`, new Error().stack);
           }
         }
       }
@@ -115,7 +113,7 @@ jst.util.Hook = class {
   }
   get wholeExecution () {
     var coreExecution = this.core ? [this.core] : [];
-    return this.before.concat(coreExecution, this.execution, this.after)
+    return this.before.reverse().concat(coreExecution, this.execution, this.after)
   }
 };
 
@@ -129,20 +127,45 @@ jst.util.update = function (oA, oB) {
 };
 
 var deepUpdate =
-jst.util.deepUpdate = function (oA, oB) {
-  for (let name in oB) {
-    val = oB[name];
-    if (typeof(val) == "object") {
-      if (typeof(oA[name]) != "object") {
-	oA[name] = {};
+jst.util.deepUpdate = function (arg) {
+  deepUpdate_(arg.dest, arg.src);
+};
+
+var deepUpdate_ =
+jst.util.deepUpdate_ = function (oDest, oSrc) {
+  for (let name in oSrc) {
+    let val = oSrc[name];
+    if (typeof(val) === "object") {
+      if (typeof(oDest[name]) !== "object") {
+        if (oDest[name] !== undefined) {
+          jst.warn(`deepUpdate: oSrc:${oSrc}, name:${name}, oSrc[name]:${oSrc[name]}, oDest:${oDest}, oDest[name]:${oDest[name]}. oDest[name] will be overwritten.`);
+        }
+        oDest[name] = {};
       }
-      deepUpdate(oA[name], val);
+      deepUpdate_(oDest[name], val);
     } else {// The simple case:
-      oA[name] = val;
+      oDest[name] = val;
     }
   }
-  return oA;
-};// OVERWRITE values of oA with those of oB
+  return oDest;
+};
 
+var arrayExtend =
+jst.util.arrayExtend = function (destArray, srcArray) {
+  Array.prototype.push.apply(destArray, srcArray);
+}
+
+var repeatArray =
+jst.util.repeatArray = function (array, n) {
+  let copy = [];
+  let l = array.length;
+  copy.length = n * l;
+  for (let i of range(n)) {
+    for (let j of range(l)) {
+      copy[i*l+j] = array[j];
+    }
+  }
+  return copy;
+}
 
 }); // End of jst.util
