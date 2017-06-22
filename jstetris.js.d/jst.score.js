@@ -6,6 +6,7 @@ score.increment = new Hook();
 score.increment.core = function () {
   score.value++;
 };
+score.increment.after.push(crd.board.rend.run);
 ld && ld.deleteLine.execution.push(score.increment.run);
 jst.debug && tris.fall.collision.execution.push(score.increment.run);
 
@@ -34,7 +35,7 @@ var cscore = score.cscore = {};
     cscore.lineWidth = crd.pps/6;
   }
   cscore.handleResize.core()
-  crd.handleResize.after.push(cscore.handleResize.run);
+  crd.handleResize.execution.push(cscore.handleResize.run);
 
 
   /**
@@ -74,7 +75,7 @@ var cscore = score.cscore = {};
     
     // (3) Changing the last point if needed //
     /* Uncomment the code below when ereasing score board is ready. */
-    /**
+    /**/
     if (cscore.solePosition[2 * remainingCount - 1] !== null) {
       pfiller.srcPosArray = cscore.solePosition;
       pfiller.skipCount = pointnumber - 1;
@@ -132,8 +133,9 @@ var cscore = score.cscore = {};
       crd.ctx.stroke();
     }
   };
-  cscore.handleResize.after.push(cscore.drawScore);
-  score.increment.after.push(cscore.drawScore);
+  crd.board.rend.after.push(cscore.drawScore);
+  //cscore.handleResize.after.push(cscore.drawScore);
+  //score.increment.after.push(cscore.drawScore);
 }
   
 });

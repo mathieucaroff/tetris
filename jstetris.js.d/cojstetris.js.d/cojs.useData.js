@@ -12,6 +12,7 @@ jst.useDataCode = jst.pushModuleCode(function () {
 
 let usedata = jst.useData = {};
 usedata.getData = function () {
+  jst.randomValue = usedata.id + Math.random();
   filter = ["tris",
               "pos", "x", "y",
               "rot",
@@ -21,12 +22,14 @@ usedata.getData = function () {
             "hold",
             "queue", "boxList",
             "time", "suspended",
-            "grid"];
-  return JSON.stringify(jst, filter);
+            "grid",
+            "randomValue"];
+  return usedata.saved = JSON.stringify(jst, filter);
 }
 usedata.setData = function (JSONdatastring) {
   jdata = JSON.parse(JSONdatastring);
   deepUpdate({src:jdata, dest:jst});
   crd.board.rend.run();
 }
+usedata.id = 0;
 }); // End of jst.useData

@@ -77,6 +77,19 @@ crd.drawCircle = function (x, y, radius) {
   crd.ctx.beginPath();
   crd.ctx.arc(x, y, radius, 0, 6.3, false);
 };
+  
+/**
+ * crd.drawRectangle
+ * Write the path of a circle at the given position. Uses the current style.
+ */
+crd.drawRectangle = function (x, y, width, height) {
+  crd.ctx.beginPath();
+  crd.ctx.moveTo(x, y);
+  crd.ctx.lineTo(x + width, y);
+  crd.ctx.lineTo(x + width, y + height);
+  crd.ctx.lineTo(x, y + height);
+  crd.ctx.closePath();
+};
 
 
 crd.handleResize = new Hook();
@@ -98,6 +111,9 @@ crd.handleResize.core = function () {
   crd.wideline = Math.ceil(2 * crd.pps / 7);
   bo.pwidth  = (crd.pps * bo.width);
   bo.pheight = (crd.pps * bo.height);
+  bo.xcenter = crd.board.pxoff + crd.board.pwidth/2;
+  bo.ycenter = crd.board.pyoff + crd.board.pheight/2;
+  bo.incircleDiameter = Math.min(bo.pwidth, bo.pheight);
   bo.pxoff = Math.ceil((wi-bo.pwidth)/2);
   bo.pyoff = Math.ceil((he-bo.pheight)/2);
 };

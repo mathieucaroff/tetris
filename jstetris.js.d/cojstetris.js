@@ -8,7 +8,7 @@ jst.myGates.cojs = {}; jst.myGates.cojs.load = function () {
   var cojs = jst.myGates.cojs;
   cojs.pathFromName = (x => `jstetris.js.d/cojstetris.js.d/cojs.${x}.js`);
   cojs.namearray = [
-"cojsLock", "useData", "roleindicator"
+"cojsLock", "useData", "roleindicator", "http", "serverExchange"
   ];
   cojs.mode = "module";
   cojs.title = "cojs";

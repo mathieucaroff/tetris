@@ -1,10 +1,10 @@
 jst.timeCode = jst.pushModuleCode(function () {
-this.time =
+time =
 jst.time = {
   suspended: 1
 };
 
-this.tick =
+tick =
 time.tick = new Hook();
 tick.period = 900;
 tick.core = function () {

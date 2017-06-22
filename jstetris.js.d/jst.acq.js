@@ -5,7 +5,7 @@ jst.acq = {};
 
 acq.init = new Hook();
 acq.init.core = function () {
-  /// TODO /// The Hook watcher must be somewhere else than on body. maybe on cavas ? ... If it can be made to work.
+  /// TODO /// The event watcher must be somewhere else than on body. maybe on cavas ? ... If it can be made to work.
   document.body.onkeydown = acq.handelkeydown;
 }
 jst.init.execution.push(acq.init.run);

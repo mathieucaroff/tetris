@@ -12,6 +12,7 @@ locklib.unlock = function (hook) {
 
 cojsLock.horizHooks = "moveRight moveLeft moveDown overground quickfall".split(" ").map((name) => jst.uact[name]);
 cojsLock.rotatHooks = "rotate hold toogleSuspend".split(" ").map((name) => jst.uact[name]);
+cojsLock.rotatHooks.push(time.tick);
 
 cojsLock.affectedHooks = cojsLock.horizHooks.concat( cojsLock.rotatHooks);
 
