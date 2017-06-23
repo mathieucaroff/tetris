@@ -23,8 +23,8 @@ usedata.sharable = [
 "queue", "boxlist", "zone",
 "time", "suspended",
 "grid",
-"usedata", "dataid",
-"randomValue"];
+"usedata", "dataid"
+];
 
 usedata.id = 0; // Default value
 usedata.getData = function () {
