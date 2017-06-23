@@ -20,7 +20,7 @@ usedata.sharable = [
   "type",
   "shape",
 "hold",
-"queue", "boxList", "zone",
+"queue", "boxlist", "zone",
 "time", "suspended",
 "grid",
 "usedata", "dataid",
