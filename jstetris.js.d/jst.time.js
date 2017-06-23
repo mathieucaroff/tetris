@@ -6,7 +6,7 @@ jst.time = {
 
 tick =
 time.tick = new Hook();
-tick.period = 900;
+tick.period = 6000;
 tick.core = function () {
   if (time.suspended) {
     time.resume.run();

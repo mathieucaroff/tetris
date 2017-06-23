@@ -1,4 +1,4 @@
-jst.myGates.cojs = {}; jst.myGates.cojs.load = function () {
+jst.myGates.cojs = {}; jst.myGates.cojs.load = _ => {
 'use strict';
 /**
  * jst.myGates.cojs
@@ -8,7 +8,7 @@ jst.myGates.cojs = {}; jst.myGates.cojs.load = function () {
   var cojs = jst.myGates.cojs;
   cojs.pathFromName = (x => `jstetris.js.d/cojstetris.js.d/cojs.${x}.js`);
   cojs.namearray = [
-"cojsLock", "useData", "roleindicator", "http", "serverExchange"
+"cojsLock", "usedata", "roleindicator", "http", "request", "connection", "superviser"
   ];
   cojs.mode = "module";
   cojs.title = "cojs";

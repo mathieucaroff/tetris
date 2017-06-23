@@ -29,14 +29,16 @@ function TBox (index) {
   crd.initTris(this.crdtris, tris, this.zone);
   crd.initZone(this.zone, this.zone, bo);
   
+  
   this.enter = new Hook();
   this.enter.core = function () {
     var type = tris.type = me.input();
     tris.shape = jst.trisBank.shapes[type];
     tris.color = jst.trisBank.colors[type];
-  }
+  };
   this.enter.before.push(tris.erease.run);
   this.enter.after.push(tris.rend.run);
+  crd.board.rend.execution.unshift(tris.rend.run);
 
   this.input = undefined;
   this.output = this.fulsh = function () {

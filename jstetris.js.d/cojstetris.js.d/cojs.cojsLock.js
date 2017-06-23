@@ -1,6 +1,6 @@
 jst.cojsLockCode = jst.pushModuleCode(function () {
 // Lock
-cojsLock = jst.uact.cojsLock = {};
+var cojsLock = jst.uact.cojsLock = {};
 locklib = cojsLock.locklib = {};
 locklib.lock = function (hook) {
   hook.locked = true;

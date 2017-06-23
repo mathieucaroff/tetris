@@ -10,7 +10,7 @@ jst.roleIndicatorCode = jst.pushModuleCode(function () {
 // - Held tris
 // - Whole 20x10 grid (colornumbers)
 
-let roleIndicator = crd.roleIndicator = {};
+var roleIndicator = crd.roleIndicator = {};
 roleIndicator.show = new Hook();
 crd.board.rend.execution.unshift(roleIndicator.show.run);
 

@@ -4,8 +4,24 @@ var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function
   {
     let nothing = jst.nothing = function () {};
     let log = jst.debug ? console.log : nothing;
+    let logOnce = (...args) => {
+      let id = args.toString()
+      if (logOnce[id] === undefined) {
+        logOnce[id] = 1;
+        log.apply(this, args);
+      }
+    };
     jst.log = log;
     jst.llog = nothing; // loader log
+    jst.connectionLog = (...args) => {
+      log.apply(this, ["cx: "].concat(args));
+    }; // connexion log
+    jst.requestLog = (...args) => {
+      log.apply(this, ["req: "].concat(args));
+    }; // request log
+    jst.httpLog = (...args) => {
+      log.apply(this, ["h: "].concat(args));
+    }; // request log
     jst.warn = jst.debug ? console.warn : nothing;
     jst.error = jst.debug ? console.error : nothing;
   }
@@ -16,7 +32,7 @@ var jst = {}; document.title = jst.title = "jsTetris 0.0.5"; jst.load = function
   jst.pushModuleCode = function (module) {
     jst.moduleCodeList.push(module);
     return module;
-  }
+  };
   
   jst.myModules = {};
   jst.myModules.pathFromName = (x => `jstetris.js.d/jst.${x}.js`);
