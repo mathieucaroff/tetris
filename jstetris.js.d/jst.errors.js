@@ -1,4 +1,4 @@
-jst.errorsCode = jst.pushModuleCode(function () {
+export default function (jst) {
 function NotImplementedError (message) {
     this.name = "NotImplementedError";
     this.message = (message || "");
@@ -10,4 +10,4 @@ function FormatError (message) {
     this.message = (message || "");
 }
 FormatError.prototype = Error.prototype;
-}); // End of jst.errors
+}; // End of jst.errors.js

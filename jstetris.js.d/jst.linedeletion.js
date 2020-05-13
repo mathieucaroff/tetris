@@ -1,10 +1,11 @@
-jst.linedeletionCode = jst.pushModuleCode(function () {
+export default function (jst) {
 
+var ld =
 this.ld =
 jst.linedeletion = {};
-this.tris = jst.tris;
-this.grid = jst.grid;
-this.range = jst.util.range;
+var tris = jst.tris;
+var grid = jst.grid;
+var range = jst.util.range;
 
 ld.deleteLine = new jst.util.Hook();
 ld.deleteLine.core = function () {
@@ -34,4 +35,4 @@ ld.checkLines = function () {
 };
 tris.fall.collision.after.unshift(ld.checkLines);
 
-});
+}; // End of jst.linedeletion.js

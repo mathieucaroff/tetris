@@ -1,4 +1,6 @@
-jst.trisBankCode = jst.pushModuleCode(function () {
+export default function (jst) {
+
+var trisBank = 
 this.trisBank = 
 jst.trisBank = {
   shapes: {
@@ -35,4 +37,4 @@ trisBank.randomType = function () {
   var type = trisBank.types[Math.floor(trisBank.types.length * Math.random())];
   return type;
 };
-}); // End of jst.trisBank
+}; // End of jst.trisBank.js

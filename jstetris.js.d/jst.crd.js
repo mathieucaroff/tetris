@@ -1,10 +1,11 @@
-jst.crdCode = jst.pushModuleCode(function () {
+export default function (jst) {
 /// Canvas render crd
+var crd = 
 this.crd = 
 jst.crd = {
   board: {
-    width: grid.width + 4.5 + 4.5,
-    height: grid.height
+    width: jst.grid.width + 4.5 + 4.5,
+    height: jst.grid.height
   },
   tris: {},
   grid: {},
@@ -91,7 +92,7 @@ crd.handelResize = function () {
 
 crd.board.rend = new Hook();
 crd.board.rend.core = function () {
-  crd.ctx.fillStyle = crd.hue["black"];
+  crd.ctx.fillStyle = //crd.hue["black"];
   crd.ctx.fillRect(0, 0, jst.canvas.width, jst.canvas.height);
 };
 
@@ -123,12 +124,22 @@ crd.initZone = function (crdzone, jstzone, bo) {
     // TODO rather cache each square type first, and use cached data for displaying them after
     var color = crd.hue[crd.color[colorNum || 11 + (x+y) % 2]];
     if (colorNum) {
-      let darkColor = Color.textFromTriplet(Vector.scale(Color.tripletFromText(color),0.5).map(Math.round));
+      let darkColor = jst.util.Color.textFromTriplet(
+        jst.util.Vector.scale(
+          jst.util.Color.tripletFromText(color),
+          0.5
+        ).map(Math.round)
+      );
       ctx.fillStyle = darkColor;
       ctx.fillRect(pxoff, pyoff, pps, pps);
       ctx.fillStyle = color;
       ctx.fillRect(pxoff + crd.outline, pyoff + crd.outline, pps - 2 * crd.outline, pps - 2 * crd.outline);
-      let semidarkcolor = Color.textFromTriplet(Vector.scale(Color.tripletFromText(color),0.8).map(Math.round));
+      let semidarkcolor = jst.util.Color.textFromTriplet(
+        jst.util.Vector.scale(
+          jst.util.Color.tripletFromText(color),
+          0.8
+        ).map(Math.round)
+      );
       ctx.fillStyle = semidarkcolor;
       ctx.fillRect(pxoff + crd.wideline, pyoff + crd.wideline, pps - 2 * crd.wideline, pps - 2 * crd.wideline);
     } else {
@@ -144,7 +155,7 @@ crd.initZone(crd.grid, jst.grid, crd.board);
 
 crd.initTris = function (crdtris, jsttris, crdzone) {
   crdtris.rend = function () {
-    for (let i of range(0,8,2)) {
+    for (let i of jst.util.range(0,8,2)) {
       var y = jsttris.pos.y + jsttris.shape[i];
       var x = jsttris.pos.x + jsttris.shape[i+1];
       crdzone.rendSquare(y,x);
@@ -171,7 +182,10 @@ crd.initTris = function (crdtris, jsttris, crdzone) {
   jsttris.rend.execution.push(crdtris.clear);
 };
 
+var w = window;
+w.crd = crd;
+
 crd.initTris(crd.tris, jst.tris, crd.grid);
 
 jst.grid.gameOver.after.push(crd.grid.rend)
-}); // End of jst.crd
+}; // End of jst.crd.js

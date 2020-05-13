@@ -1,4 +1,4 @@
-jst.zoneCode = jst.pushModuleCode(function () {
+export default function (jst) {
   jst.zone = {};
   jst.zone.NewZone = function (height, width) {
     var zone = Array(height);
@@ -9,7 +9,7 @@ jst.zoneCode = jst.pushModuleCode(function () {
       line[-1] = line[width] = -1;
       return line;
     }
-    for (let y of range(height+1)) {
+    for (let y of jst.util.range(height+1)) {
       zone[y] = zone.genVoidLine();
     };
     zone[-1] = Array(width).fill(-1);
@@ -18,8 +18,8 @@ jst.zoneCode = jst.pushModuleCode(function () {
     return zone;
   }
 
-height = 20;
-width = 10;
+var height = 20;
+var width = 10;
 this.grid =
 jst.grid = jst.zone.NewZone(height, width);  
-}); // End of jst.zone
+}; // End of jst.zone.js

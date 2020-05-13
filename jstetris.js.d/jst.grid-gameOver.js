@@ -1,5 +1,6 @@
-jst.grid_gameOverCode = jst.pushModuleCode(function () {
+export default function (jst) {
 
+var grid = jst.grid;
 grid.gameOver = new Hook();
 grid.gameOver.symbol =`
 o        o
@@ -29,4 +30,4 @@ grid.gameOver.core = function () {
   }
 }
 jst.gameOver.execution.push(grid.gameOver.run);
-}); // End of jst.grid-gameOver
+}; // End of jst.grid-gameOver.js

@@ -1,9 +1,11 @@
-jst.timeCode = jst.pushModuleCode(function () {
+export default function (jst) {
+var time = 
 this.time =
 jst.time = {
   supended: 1
 };
 
+var tick =
 this.tick =
 time.tick = new Hook();
 tick.period = 900;
@@ -40,4 +42,4 @@ time.toogleSuspend.core = function () {
 
 time.start = new Hook(time.resume.core);
 jst.start.after.push(time.start.run);
-}); // End of jst.time
+}; // End of jst.time.js

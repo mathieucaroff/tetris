@@ -1,0 +1,12 @@
+{
+  "name": "js-tetris",
+  "version": "0.0.6",
+  "description": "Simple and extensible Tetris game for the browser",
+  "main": "index.js",
+  "keywords": [
+    "tetris",
+    "html5-canvas"
+  ],
+  "author": "Mathieu CAROFF",
+  "license": "CC0-1.0"
+}

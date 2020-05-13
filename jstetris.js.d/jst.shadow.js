@@ -1,11 +1,13 @@
-jst.shadowCode = jst.pushModuleCode(function () {
+export default function (jst) {
 // Beware dirty code in this module
 var shadow = jst.shadow = Object.create(jst.tris);
-shadow.pos = update({}, jst.tris.default.pos);
+shadow.pos = jst.util.update({}, jst.tris.default.pos);
 shadow.color = 12;
 shadow.crd = {};
 jst.initTris(shadow, jst.grid);
 crd.initTris(shadow.crd, shadow, crd.grid);
+
+var tris = jst.tris;
 
 shadow.update = new Hook();
 shadow.update.core = function () {
@@ -36,4 +38,4 @@ shadow.moveConditionalUpdate = _ => shadow.willUpdate ? shadow.update.run() : nu
 tris.move.execution.push(shadow.moveConditionalUpdate);
 tris.rotate.execution.push(shadow.update.run);
 tris.enter.execution.push(shadow.update.run);
-});
+}; // End of jst.shadow.js

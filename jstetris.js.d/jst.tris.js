@@ -1,4 +1,4 @@
-jst.trisCode = jst.pushModuleCode(function () {
+export default function (jst) {
 
 var tris =
 jst.tris = {};
@@ -15,7 +15,7 @@ jst.tris.default = {
     pos: {}
   }
 };
-deepUpdate(tris, tris.default);
+jst.util.deepUpdate(tris, tris.default);
 tris.pos = {
   y:18,
   x:5
@@ -143,12 +143,12 @@ jst.time.tick.after.push(tris.fall.run);
 
 tris.down = new Hook();
 tris.down.execution.push(tris.fall.core)
-tris.down.execution.push(tick.core);
+tris.down.execution.push(jst.time.tick.core);
 
 tris.quickfall = new Hook();
 tris.quickfall.before.push(tris.erease.run);
 tris.quickfall.after.push(tris.rend.run);
-tris.quickfall.after.push(time.tick.run);
+tris.quickfall.after.push(jst.time.tick.run);
 tris.genQuickfallCore = function (tris) {
   return function () {
     do {
@@ -178,6 +178,8 @@ tris.overground.core = function () {
   return;
 }
 
+var trisBank = jst.trisBank;
+
 tris.enter = new Hook();
 tris.enter.core = function () {
   tris.savetris();
@@ -204,4 +206,4 @@ tris.getType.core = function () {
   if (!tris.enter.trisType)
     tris.enter.trisType = jst.trisBank.randomType();
 };
-}); // End of jst.tris
+}; // End of jst.tris.js

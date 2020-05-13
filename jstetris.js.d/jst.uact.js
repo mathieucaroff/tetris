@@ -1,5 +1,6 @@
-jst.acqCode = jst.pushModuleCode(function () {
+export default function (jst) {
 // User Action
+var uact =
 this.uact =
 jst.uact = {};
 uact.basicHookNames = "moveLeft moveRight rotate moveDown quickfall overground".split(" ");
@@ -24,7 +25,7 @@ time.pause.execution.push(uact.disable);
 
 // Settings
 {
-  let kd = acq.keyDown;
+  let kd = jst.acq.keyDown;
   kd.pgdown.execution.push(uact.overground.run);
 
   kd.left.execution.push(uact.moveLeft.run);
@@ -41,6 +42,7 @@ time.pause.execution.push(uact.disable);
 }
 //
 
+var tris = jst.tris;
 uact.moveDown.execution.push(tris.down.run);
 uact.moveLeft.core = function () {
   tris.move.x = -1;
@@ -58,4 +60,4 @@ uact.quickfall.execution.push(tris.quickfall.run);
 uact.overground.execution.push(tris.overground.run);
 
 uact.toogleSuspend.execution.push(time.toogleSuspend.run);
-}); // End of jst.acq
+}; // End of jst.acq.js

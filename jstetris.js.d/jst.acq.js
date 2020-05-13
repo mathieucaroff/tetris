@@ -1,7 +1,8 @@
-jst.acqCode = jst.pushModuleCode(function () {
+export default function (jst) {
 /// Acquisition
+var acq =
 this.acq =
-jst.acq = {};
+jst.acq = {};;
 
 acq.init = new Hook();
 acq.init.core = function () {
@@ -11,7 +12,7 @@ acq.init.core = function () {
 jst.init.execution.push(acq.init.run);
 
 acq.keyDown = Array(256);
-for (let i of range(256)) {
+for (let i of jst.util.range(256)) {
   acq.keyDown[i] = new Hook();
 }
 acq.handelkeydown = function (ev) {
@@ -39,4 +40,4 @@ acq.handelkeydown = function (ev) {
   kd.down = kd[40];
   kd.p = kd[80];
 }
-}); // End of jst.acq
+}; // End of jst.acq.js

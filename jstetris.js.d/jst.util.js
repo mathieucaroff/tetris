@@ -1,5 +1,5 @@
-jst.utilCode = jst.pushModuleCode(function () {
-  
+export default function (jst) {
+
 jst.util = {};
 
 var doNothing =
@@ -67,7 +67,7 @@ jst.util.Color = {
   black: [0,0,0],
   white: [255,255,255],
   textFromTriplet: function (triplet) {
-    text = "#";
+    let text = "#";
     for (let i of range(3)) {
       text += (256+triplet[i]).toString(16).slice(1);
     }
@@ -75,14 +75,17 @@ jst.util.Color = {
   },
   tripletFromText: function (text) {
     if (text[0] !== "#") throw "Given text-color not recognized.";
-    triplet = [0, 0, 0];
+    let triplet = [0, 0, 0];
     for (let i of range(3)) {
       triplet[i] = parseInt(text.slice(2*i+1, 2*i+3), 16);
     }
     return triplet;
   },
   avg: function (col1, col2) {
-    return Vector.add(col1.map(Math.sq), col2.map(Math.sq)).map(Math.sqrt);
+    return Vector.add(
+      col1.map(Math.sq),
+      col2.map(Math.sq)
+    ).map(Math.sqrt);
   }
 };
 
@@ -131,7 +134,7 @@ jst.util.update = function (oA, oB) {
 var deepUpdate =
 jst.util.deepUpdate = function (oA, oB) {
   for (let name in oB) {
-    val = oB[name];
+    let val = oB[name];
     if (typeof(val) == "object") {
       if (typeof(oA[name]) != "object") {
 	oA[name] = {};
@@ -145,4 +148,4 @@ jst.util.deepUpdate = function (oA, oB) {
 };// OVERWRITE values of oA with those of oB
 
 
-}); // End of jst.util
+}; // End of jst.util.js

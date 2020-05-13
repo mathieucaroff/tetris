@@ -1,8 +1,10 @@
-jst.holdCode = jst.pushModuleCode(function () {
+export default function (jst) {
 
+var hold =
 this.hold =
 jst.hold = {};
 
+var held =
 this.held = jst.held = {
   type: "",
   shape: [0,0, 0,0, 0,0, 0,0],
@@ -45,7 +47,7 @@ hold.swap.before.push(jst.tris.erease.run);
 hold.swap.before.push(held.erease.run);
 
 /// crd
-crd.initTris(held.crd, held, hold.zone);
+jst.crd.initTris(held.crd, held, hold.zone);
 // board
 var bo = jst.hold.board = Object.create(jst.crd.board);
 bo.width = width;
@@ -53,17 +55,17 @@ bo.height = height;
 
 hold.zone.yoff = 0;
 hold.zone.xoff = 0.25;
-crd.initZone(hold.zone, hold.zone, bo);
+jst.crd.initZone(hold.zone, hold.zone, bo);
 
 {
   // acq
-  let kd = acq.keyDown;
+  let kd = jst.acq.keyDown;
   kd.shift_ = kd[16];
 
   // uact
-  uact.hold = new Hook();
-  kd.shift_.execution.push(uact.hold.run);
-  uact.hold.execution.push(hold.swap.run);
+  jst.uact.hold = new Hook();
+  kd.shift_.execution.push(jst.uact.hold.run);
+  jst.uact.hold.execution.push(hold.swap.run);
 }
 
-});
+}; // End of jst.preview.js

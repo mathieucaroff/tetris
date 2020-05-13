@@ -1,4 +1,4 @@
-jst.jstCode = jst.pushModuleCode(function () {
+export default function (jst) {
 jst.init = new Hook();
 jst.start = new Hook();
 jst.gameOver = new Hook();
@@ -10,4 +10,4 @@ jst.init.core = function () {
   document.body.appendChild(canvas);
 };
 
-}); // End of jst.jst
+}; // End of jst.jst.js
