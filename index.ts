@@ -15,6 +15,8 @@ import { default as jstUact } from "./src/uact";
 import { default as jstUtil } from "./src/util";
 import { default as jstZone } from "./src/zone";
 
+import { githubCornerHTML } from "./src/lib/githubCorner";
+
 let jstModuleArray = [
     jstUtil,
     jstJst,
@@ -50,4 +52,9 @@ window.j = jst;
 jst.init.run();
 jst.start.run();
 
-console.log("JS TETRIS");
+let corner = document.createElement("div");
+let REPO_URL = "https://github.com/mathieucaroff/jsTetris";
+corner.innerHTML = githubCornerHTML(REPO_URL);
+document.body.append(corner);
+
+console.log(REPO_URL);
