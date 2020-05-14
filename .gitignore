@@ -1,7 +1,7 @@
 # Directory
 node_modules/
 /*/
-!/jstetris.js.d/
+!/src/
 
 # File
 yarn.lock
