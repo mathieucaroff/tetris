@@ -1,4 +1,4 @@
-/// <reference path="src/type.d.ts"/>
+import "regenerator-runtime/runtime";
 
 import { default as jstAcq } from "./src/acq";
 import { default as jstCrd } from "./src/crd";

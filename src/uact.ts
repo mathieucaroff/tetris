@@ -26,7 +26,7 @@ export default function (jst: Jst) {
     // Settings
     {
         let kd = jst.acq.keyDown;
-        debugger;
+
         kd.pgdown.execution.push(uact.overground.run);
 
         kd.left.execution.push(uact.moveLeft.run);
