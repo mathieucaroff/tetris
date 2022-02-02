@@ -2,7 +2,6 @@
     "name": "js-tetris",
     "version": "0.0.6",
     "description": "Simple and extensible Tetris game for the browser",
-    "main": "index.html",
     "keywords": [
         "tetris",
         "html5-canvas"
@@ -10,11 +9,11 @@
     "author": "Mathieu CAROFF <mathieu.caroff@free.fr>",
     "license": "CC0-1.0",
     "scripts": {
-        "build": "parcel build -d public -o index.html index.html"
+        "build": "parcel build tetris.html --public-url tetris.d"
     },
-    "dependencies": {
-        "parcel": "^1.12.4",
+    "devDependencies": {
+        "parcel": "^2.2.1",
         "prettier": "^2.0.5",
-        "typescript": "3.8.3"
+        "typescript": "4.5.5"
     }
 }

@@ -1,6 +1,6 @@
 {
   "include": [
-    "index.ts",
+    "tetris.ts",
     "src",
   ],
 //   "references":,
