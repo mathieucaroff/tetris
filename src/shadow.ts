@@ -12,7 +12,10 @@ export default function (jst: Jst) {
     shadow.update = new Hook();
     shadow.update.core = function () {
         shadow.pos.x = tris.pos.x;
-        shadow.pos.y = -1;
+        shadow.pos.y = tris.pos.y - 2;
+        while (shadow.pos.y >= 0 && !shadow.collision()) {
+            shadow.pos.y -= 1;
+        }
         while (shadow.pos.y <= 18 && shadow.collision()) {
             shadow.pos.y += 1;
         }
