@@ -1,4 +1,4 @@
-# jsTetris
+# tetris
 
 Simple and extensible Tetris game for the browser
 
@@ -17,5 +17,10 @@ With VSCode, use the extension prettier, and enable format on save.
 ### Develop
 
 ```
-yarn parcel index.html
+yarn parcel tetris.html
 ```
+
+### About
+
+- `jst` stands for _jsTetris_, the original name of the project
+- `crd` stands for canvas renderer

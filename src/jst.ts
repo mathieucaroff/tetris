@@ -5,7 +5,7 @@ export default function (jst) {
 
     jst.init.core = function () {
         var canvas = (jst.canvas = document.createElement("canvas"));
-        canvas.id = "jsTetrisCanvas";
+        canvas.id = "tetrisCanvas";
         document.body.appendChild(canvas);
     };
 } // End of jst.jst.js

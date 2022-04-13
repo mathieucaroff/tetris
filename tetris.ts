@@ -53,7 +53,7 @@ jst.init.run();
 jst.start.run();
 
 let corner = document.createElement("div");
-let REPO_URL = "https://github.com/mathieucaroff/jsTetris";
+let REPO_URL = "https://github.com/mathieucaroff/tetris";
 corner.innerHTML = githubCornerHTML(REPO_URL);
 document.body.append(corner);
 

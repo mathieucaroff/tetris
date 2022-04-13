@@ -1,44 +1,47 @@
 export default function (jst: Jst) {
     /// Canvas render crd
-    var crd: Crd = (this.crd = jst.crd = {
-        board: {
-            width: jst.grid.width + 4.5 + 4.5,
-            height: jst.grid.height,
-        },
-        tris: {},
-        grid: {},
-        color: {
-            0: "grey",
-            1: "black",
-            2: "white",
-            3: "pink",
-            4: "red",
-            5: "orange",
-            6: "yellow",
-            7: "green",
-            8: "cyan",
-            9: "blue",
-            10: "purple",
-            11: "grey+",
-            12: "grey-",
-            13: "grey",
-        },
-        hue: {
-            grey: "#808080",
-            "grey+": "#2F2F2F",
-            "grey-": "#262626",
-            black: "#000000",
-            white: "#FFFFFF",
-            pink: "#C529A6",
-            red: "#F72039",
-            orange: "#FF7900",
-            yellow: "#FFC729",
-            green: "#7BCF13",
-            cyan: "#59CCFD",
-            blue: "#2159DE",
-            purple: "#800080",
-        },
-    } as any);
+    var crd: Crd =
+        (this.crd =
+        jst.crd =
+            {
+                board: {
+                    width: jst.grid.width + 4.5 + 4.5,
+                    height: jst.grid.height,
+                },
+                tris: {},
+                grid: {},
+                color: {
+                    0: "grey",
+                    1: "black",
+                    2: "white",
+                    3: "pink",
+                    4: "red",
+                    5: "orange",
+                    6: "yellow",
+                    7: "green",
+                    8: "cyan",
+                    9: "blue",
+                    10: "purple",
+                    11: "grey+",
+                    12: "grey-",
+                    13: "grey",
+                },
+                hue: {
+                    grey: "#808080",
+                    "grey+": "#2F2F2F",
+                    "grey-": "#262626",
+                    black: "#000000",
+                    white: "#FFFFFF",
+                    pink: "#C529A6",
+                    red: "#F72039",
+                    orange: "#FF7900",
+                    yellow: "#FFC729",
+                    green: "#7BCF13",
+                    cyan: "#59CCFD",
+                    blue: "#2159DE",
+                    purple: "#800080",
+                },
+            } as any);
 
     window.resizeHook = new Hook();
     document.body.onresize = window.resizeHook.run;
@@ -51,7 +54,7 @@ export default function (jst: Jst) {
     margin: 0;
     padding: 0;
   }
-  #jsTetrisCanvas {
+  #tetrisCanvas {
     background-color: yellow;
     position: absolute;
     width: 100% ;
