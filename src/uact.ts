@@ -1,9 +1,25 @@
+import { horizontalFingerMoveManager } from "./lib/horizontalFingerMoveManager";
+
 export default function (jst: Jst) {
     // User Action
     var uact: Uact = (this.uact = jst.uact = {} as any);
-    uact.basicHookNames = "moveLeft moveRight rotate moveDown quickfall overground".split(
-        " "
-    );
+
+    horizontalFingerMoveManager({
+        element: document.documentElement,
+        callback: (kind) => {
+            console.log("Kind", kind);
+            if (kind === "left") {
+                uact.moveLeft.run();
+            } else if (kind === "right") {
+                uact.moveRight.run();
+            } else if (kind === "tap") {
+                uact.rotate.run();
+            }
+        },
+    });
+
+    uact.basicHookNames =
+        "moveLeft moveRight rotate moveDown quickfall overground".split(" ");
     for (let hookName of uact.basicHookNames) {
         uact[hookName] = new Hook();
     }
