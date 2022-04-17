@@ -9,8 +9,9 @@
     "author": "Mathieu CAROFF <mathieu.caroff@free.fr>",
     "license": "CC0-1.0",
     "scripts": {
-        "build": "parcel build tetris.html --public-url tetris.d",
-        "serve": "parcel serve tetris.html"
+        "build": "parcel build index.html --dist-dir public",
+        "mcabuild": "parcel build index.html --public-url tetris.d",
+        "serve": "parcel serve index.html"
     },
     "devDependencies": {
         "parcel": "^2.2.1",
