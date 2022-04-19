@@ -69,7 +69,6 @@ export let horizontalFingerMoveManager = ({
 
     let handleMouseUp = () => {
         mouseIsDown = false;
-        handleTouchEnd();
     };
 
     element.addEventListener("touchstart", handleTouchStart, false);
@@ -82,9 +81,6 @@ export let horizontalFingerMoveManager = ({
     let removeAll = () => {
         element.removeEventListener("touchstart", handleTouchStart, false);
         element.removeEventListener("touchmove", handleTouchMove, false);
-        element.removeEventListener("mousedown", handleMouseDown, false);
-        element.removeEventListener("mousemove", handleMouseMove, false);
-        element.removeEventListener("mouseup", handleMouseUp, false);
     };
 
     let me = {
