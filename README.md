@@ -2,6 +2,10 @@
 
 Simple and extensible Tetris game for the browser
 
+## [Play It](https://jstetris.vercel.app/)
+
+[![preview](doc/img/tetris-preview.png)](https://jstetris.vercel.app/)
+
 ## Contribute
 
 ```sh
@@ -17,7 +21,7 @@ With VSCode, use the extension prettier, and enable format on save.
 ### Develop
 
 ```
-yarn parcel tetris.html
+yarn parcel index.html
 ```
 
 ### About
